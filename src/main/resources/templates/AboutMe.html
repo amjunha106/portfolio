@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>About Me</title>
+</head>
+<style>
+  body{
+    background-color: #1d1d1d; /* 어두운 회색 배경 */
+    margin : 0 0 200px 0;
+    font-family : 'Arvo', sans-serif;
+    overflow-x: hidden;
+  }
+  .title{
+    font-size : 5em;
+    color : white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    margin : 100px 0 0 200px;
+    position: relative;
+  }
+  .home{
+    border: 2px solid white;
+    color: white;
+    position: fixed;
+    padding: 10px;
+    margin: -150px auto auto 50px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+  }
+  .img{
+    border-radius : 50%;
+    border : 3px solid white;
+    overflow : hidden;
+    width : 200px;
+    height : 200px;
+    object-fit : cover;
+    margin: 0 0 0 200px;
+    display: inline-block;
+    position: relative;
+  }
+  .img img{
+    position: relative;
+    margin: -80px 0 0 -155px;
+    width: 500px;
+  }
+  .main{
+    margin-top: 200px;
+    position: relative;
+    left: 200px;
+  }
+  .main span{
+    display: block;
+    position: relative;
+    top : -200px; left : 450px;
+    font-size: 25px;
+    color: white;
+  }
+  #highlight{
+    border : 1px solid white;
+    background-color: white;
+    color: black;
+    width : 220px;
+    padding: 0 10px 0 10px;
+    margin-bottom: 10px;
+  }
+  hr{
+    width : 80%;
+  }
+  h1{
+    color: white;
+    font-size: 50px;
+    margin: 60px 0 0 200px;
+  }
+  .subTitle2{
+    font-size: 40px;
+  }
+  .icon{
+    margin: 20px 20px 0 0px;
+    border: 3px solid white;
+    border-radius: 20px;
+    background-color: #2F2F2F;
+    display: inline-flex; /* flexbox로 아이콘과 글씨를 수평으로 배치 */
+    justify-content: flex-start; /* 아이콘을 왼쪽 정렬 */
+    align-items: center; /* 아이콘을 수직 중앙 정렬 */
+    color: white; /* 글씨 색을 하얀색으로 설정 */
+    font-size: 16px; /* 글씨 크기 설정 */
+    padding: 10px 15px 15px 10px; /* padding을 추가하여 여백을 제공 */
+    width: auto; /* 내용에 맞게 너비 자동 설정 */
+    height: auto; /* 내용에 맞게 높이 자동 설정 */
+  }
+  .icon img{
+    width: 40px; /* 이미지 크기 설정 */
+    height: 40px; /* 이미지 크기 설정 */
+    object-fit: contain;
+    margin-right: 10px; /* 이미지와 텍스트 사이의 간격 */
+  }
+  .icon span{
+    color: white; /* 글씨 색을 하얀색으로 설정 */
+    font-size: 16px; /* 글씨 크기 설정 */
+    font-weight: bold;
+  }
+</style>
+<body>
+  <h1 class="title">About Me</h1>
+  <a href="Home" class="home">Home</a>
+  <div class="main">
+    <div class="img">
+      <img th:src="@{/images/image1.jpg}"/>
+      <!-- <img src="/src/main/resources/static/images/image1.jpg"/> -->
+    </div>
+    <span style="font-weight: bold; margin-bottom: 20px; font-size: 30px;">황준하</span>
+    <span>2001.01.06</span>
+    <span id="highlight">Backend Developer</span>
+    <span>안녕하십니까 끈기와 열정이 넘치는 신입개발자 황준하입니다.</span>
+  </div>
+<hr>
+  <div>
+    <h1>Skill & Tools</h1>
+      <h1 class="subTitle2">Front-End</h1>
+        <div class="icon" style="margin-left: 200px;"><img th:src="@{/images/image4.png}"/><span>HTML</span></div>
+        <div class="icon"><img th:src="@{/images/image5.png}"/><span>CSS</span></div>
+        <div class="icon"><img th:src="@{/images/image6.png}"/><span>JavaScript</span></div>
+        <div class="icon"><img th:src="@{/images/image7.png}"/><span>VUE.JS</span></div>
+      <h1 class="subTitle2">Back-End</h1>
+        <div class="icon" style="margin-left: 200px;">
+          <img th:src="@{/images/image8.png}"/><span>Springboot</span></div>
+        <div class="icon"><img th:src="@{/images/image9.png}"/><span>Java</span></div>
+      <h1 class="subTitle2">Database</h1>
+        <div class="icon" style="margin-left: 200px;"><img th:src="@{/images/image10.png}"/><span>Oracle</span></div>
+        <div class="icon"><img th:src="@{/images/image11.png}"/><span>MySql</span></div>
+      <h1 class="subTitle2">Tools</h1>
+        <div class="icon" style="margin-left: 200px;"><img th:src="@{/images/image12.png}"/><span>IntelliJ</span></div>
+        <div class="icon"><img th:src="@{/images/image13.png}"/><span>Visual Studio Code</span></div>
+        <div class="icon"><img th:src="@{/images/image14.png}"/><span>Github</span></div>
+  </div>
+</body>
+</html>

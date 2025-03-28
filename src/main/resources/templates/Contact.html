@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Portfolio Hwang</title>
+    <style>
+        body {
+            background-color: #1d1d1d;
+            font-family: 'Arvo', sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+            height: 100vh; /* 전체 화면 높이 */
+        }
+
+        .title {
+            font-size: 50px;
+            color: white;
+            text-align: center; /* 제목을 중앙에 배치 */
+            margin-top: 20px; /* 제목과 화면 상단 사이에 간격 추가 */
+        }
+
+        .home {
+            border: 2px solid white;
+            color: white;
+            position: fixed;
+            padding: 10px;
+            margin: 50px auto auto 50px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+
+        .container {
+            border: 2px solid white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center; /* 중앙 정렬 */
+            width: 80%; /* 화면 너비의 80% */
+            max-width: 600px; /* 최대 너비 제한 */
+            position: absolute; /* 절대 위치 */
+            top: 50%; /* 수직 중앙 */
+            left: 50%; /* 수평 중앙 */
+            transform: translate(-50%, -50%); /* 중앙 정렬을 위한 변환 */
+        }
+
+        .image-container {
+            display: flex; /* 플렉스 박스를 사용하여 사진을 배치 */
+            justify-content: center; /* 사진들을 중앙에 배치 */
+            margin-top: 30px; /* 제목과 사진 사이에 간격 추가 */
+            gap: 100px; /* 사진들 사이의 간격을 100px로 설정 */
+        }
+
+        .image-container .item {
+            display: flex;
+            flex-direction: column; /* 세로 방향으로 정렬 */
+            align-items: center; /* 중앙 정렬 */
+            text-align: center; /* 텍스트 중앙 정렬 */
+            gap: 10px; /* 이미지와 텍스트 간의 간격 설정 */
+        }
+
+        .image-container img {
+            width: 100px; /* 이미지 크기 조절 */
+        }
+
+        .item span {
+            color: white; /* 텍스트 색상 */
+            font-size: 18px; /* 텍스트 크기 증가 */
+            font-weight: bold; /* 텍스트 진하게 */
+        }
+    </style>
+</head>
+
+<body>
+    <a href="Home" class="home">Home</a>
+    <div class="container">
+        <h1 class="title">Contact</h1>
+        <div class="image-container">
+            <div class="item">
+                <a href="https://github.com/amjunha106">
+                    <img th:src="@{/images/image45.png}"/>
+                </a>
+                <span>USERNAME</span>
+                <span>amjunha106</span>
+            </div>
+            <div class="item">
+                <a href="mailto:amjunha106@gmail.com">
+                    <img th:src="@{/images/image44.png}"/>
+                </a>
+                <span>GMAIL</span>
+                <span>amjunha106@gmail.com</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

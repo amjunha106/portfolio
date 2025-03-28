@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Portfolio</title>
+  <style>
+    body {
+      background-color: #1d1d1d;
+      font-family: 'Arvo', sans-serif;
+      overflow-x: hidden;
+      margin: 100px;
+    }
+
+    .title {
+      font-size: 100px;
+      color: white;
+    }
+
+    .home {
+      border: 2px solid white;
+      color: white;
+      position: fixed;
+      padding: 10px;
+      margin: -250px auto auto -85px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px;
+    }
+
+    .container-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .container {
+      width: 23%;
+      display: inline-block;
+      position: relative;
+    }
+
+    .item {
+      display: inline-block;
+      border: 2px solid white;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: rgb(48, 47, 47);
+      position: relative;
+      transition: filter 0.3s ease;
+    }
+
+    .item img {
+      width: 100%;
+    }
+
+    .projCont {
+      margin: 20px;
+      color: rgb(173, 172, 172);
+    }
+
+    .projTitle {
+      color: white;
+      font-weight: bold;
+      font-size: 25px;
+    }
+
+    .projSub {
+      border: 1px solid #1d1d1d;
+      background-color: #1d1d1d;
+      color: white;
+      padding: 3px 7px;
+      border-radius: 5px;
+    }
+
+    .more-btns {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      top: 120px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      transition: visibility 0s, opacity 0.3s ease;
+    }
+
+    .more-btns a{
+      text-decoration: none;
+    }
+
+    .more {
+      padding: 5px 15px;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+      border-radius: 10px;
+      font-size: 20px;
+      transition: opacity 0.3s ease;
+    }
+
+    .container:hover .item {
+      filter: brightness(0.8) blur(3px);
+    }
+
+    .container:hover .more-btns {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 70%;
+  max-height: 80%; /* 팝업 높이를 80%로 제한 */
+  z-index: 9999;
+  overflow-y: auto; /* 내용이 많을 경우 스크롤 추가 */
+  overflow-x: hidden;
+}
+    .popup hr{
+      width: 90%;
+    }
+
+    .popup img {
+      width: 50%;
+    }
+
+    .popup .popup-content {
+      margin-top: 20px;
+    }
+
+    .popup .popup-close {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #333;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup-content {
+  border: 2px solid white;
+  width: 94%;
+  height: auto; /* 내용에 맞게 높이 조절 */
+  text-align: center;
+  margin-bottom: 40px;
+  background-color: #1d1d1d;
+  padding: 20px 3%;
+}
+
+    .popup-content h2 {
+      font-size: 2em;
+      margin-bottom: 15px;
+      text-align: left;
+      margin-left: 120px
+    }
+
+    .popup-content p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .popup-content li {
+      font-size: 1.2em;
+      text-align: left;
+      margin-left: 100px;
+    }
+
+    .popup-content img {
+      width: 85%;
+      margin-top: 20px;
+      border: 1px solid white;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="title">Portfolio</h1>
+  <a href="Home" class="home">Home</a>
+  <hr>
+  <br><br><br><br>
+  <div class="container-wrapper">
+    <!-- 첫 번째 아이템 -->
+    <div class="container">
+      <div class="item">
+        <div>
+          <img th:src="@{/images/image18.png}"/>
+        </div>
+        <div class="projCont">
+          <p class="projTitle">포트폴리오 사이트</p>
+          <p>저만의 포트폴리오를 위한 사이트입니다.<br><br></p>
+          <span class="projSub">개인 프로젝트</span>&nbsp;&nbsp;
+          <span class="projSub">웹</span>&nbsp;&nbsp;
+          <span class="projSub">반응형</span>&nbsp;&nbsp;
+          <span class="projSub">포트폴리오</span>
+        </div>
+      </div>
+      <div class="more-btns">
+        <button class="more" onclick="showPopup('popup1')">자세히 보기</button>
+        <a href="https://github.com/amjunha106/portfolio" class="more" target="_blank">GitHub로 이동</a>
+      </div>
+    </div>
+
+    <!-- 팝업1 -->
+    <div id="popup1" class="popup">
+      <button class="popup-close" onclick="closePopup('popup1')">X</button>
+      <div class="popup-content">
+        <h2 style="text-align: center; margin-left: 0;">포트폴리오 사이트</h2>
+        <p>2025.03 - 진행중 &nbsp;&nbsp;&nbsp;1인
+          <br /><br />
+          <span class="projSub" style="border:3px solid black">개인 프로젝트</span>&nbsp;&nbsp;
+          <span class="projSub" style="border:3px solid black">웹</span>&nbsp;&nbsp;
+          <span class="projSub" style="border:3px solid black">반응형</span>&nbsp;&nbsp;
+          <span class="projSub" style="border:3px solid black">포트폴리오</span>
+        </p>
+        <img th:src="@{/images/image18.png}"/>
+        <br><br>
+        <hr>
+        <br><br>
+        <h2>사용기술 및 언어</h2>
+        <ul>
+          <li>Html</li>
+          <li>Css</li>
+          <li>JavaScript</li>
+          <li>Thymeleaf</li>
+        </ul>
+        <br><br>
+        <h2>주요기능</h2>
+        <ul>
+          <li>개발자의 정보와 사용가능한 기술들을 확인할 수 있다.</li>
+          <img th:src="@{/images/image18.png}"><br>
+          <li>지금까지 진행한 프로젝트의 정보와 깃허브로 이동할 수 있는 링크가 있다.</li>
+          <img th:src="@{/images/image20.png}"><br>
+          <li>연락가능한 연락처와 이메일을 확인할 수 있다.</li>
+          <img th:src="@{/images/image46.png}">
+        </ul>
+      </div>
+    </div>
+
+    <!-- 두 번째 아이템 -->
+    <div class="container">
+      <div class="item">
+        <div>
+          <img th:src="@{/images/image17.png}">
+        </div>
+        <div class="projCont">
+          <p class="projTitle">돈슐랭가이드</p>
+          <p>서울권의 돈까스맛집 순위를 확인하고 의견을 댓글로 나눠보세요!</p>
+          <span class="projSub">개인 프로젝트</span>&nbsp;&nbsp;
+          <span class="projSub">웹</span>&nbsp;&nbsp;
+          <span class="projSub">반응형</span>
+        </div>
+      </div>
+      <div class="more-btns">
+        <button class="more" onclick="showPopup('popup2')">자세히 보기</button>
+        <a href="https://github.com/amjunha106/map" class="more" target="_blank">GitHub로 이동</a>
+      </div>
+    </div>
+
+    <!-- 팝업2 -->
+    <div id="popup2" class="popup">
+      <button class="popup-close" onclick="closePopup('popup2')">X</button>
+      <div class="popup-content">
+        <h2 style="text-align: center; margin-left: 0;">돈까스맛집 사이트</h2>
+        <p>2025.01 - 2주 &nbsp;&nbsp;&nbsp;1인
+          <br /><br />
+          <span class="projSub" style="border:3px solid black">개인 프로젝트</span>&nbsp;&nbsp;
+          <span class="projSub" style="border:3px solid black">웹</span>&nbsp;&nbsp;
+          <span class="projSub" style="border:3px solid black">반응형</span>&nbsp;&nbsp;
+        </p>
+        <img th:src="@{/images/image17.png}">
+        <br><br>
+        <hr>
+        <br><br>
+        <h2>사용기술 및 언어</h2>
+        <ul>
+          <li>Html</li>
+          <li>Css</li>
+          <li>JavaScript</li>
+          <li>Thymeleaf</li>
+          <li>Java</li>
+        </ul>
+        <br><br>
+        <h2>기능</h2>
+        <ul>
+          <li>메인페이지(이미지 슬라이드)</li>
+          <img th:src="@{/images/image21.gif}"><br>
+          <li>돈까스랭킹(지역별)을 확인가능하다.</li>
+          <img th:src="@{/images/image23.gif}"><br>
+          <li>개발자의 돈까스에 대한 철학을 알 수 있다.</li>
+          <img th:src="@{/images/image24.png}"><br>
+          <li>사이트를 방문하는 사람들과 서로 맛집을 추천하거나 확인할 수 있다.</li>
+          <img th:src="@{/images/image25.gif}">
+        </ul>
+      </div>
+    </div>
+
+    <!-- 세 번째 아이템 -->
+    <div class="container">
+      <div class="item">
+        <div>
+          <img th:src="@{/images/image16.png}">
+        </div>
+        <div class="projCont">
+          <p class="projTitle">Project Planner</p>
+          <p>프로젝트 작업시 수월한 작업과 일정조율을 위한 사이트</p>
+          <span class="projSub">팀 프로젝트</span>&nbsp;&nbsp;
+          <span class="projSub">웹</span>
+        </div>
+      </div>
+      <div class="more-btns">
+        <button class="more" onclick="showPopup('popup3')">자세히 보기</button>
+        <a href="https://github.com/amjunha106/Final" class="more" target="_blank">GitHub로 이동</a>
+      </div>
+    </div>
+
+    <!-- 팝업3 -->
+    <div id="popup3" class="popup">
+      <button class="popup-close" onclick="closePopup('popup3')">X</button>
+      <div class="popup-content">
+        <h2 style="text-align: center; margin-left: 0;">프로젝트 관리 사이트</h2>
+        <p>2024.08 - 한달 &nbsp;&nbsp;&nbsp;3인
+          <br /><br />
+          <span class="projSub" style="border:3px solid black">팀 프로젝트</span>&nbsp;&nbsp;
+          <span class="projSub" style="border:3px solid black">웹</span>&nbsp;&nbsp;
+          <span class="projSub" style="border:3px solid black">반응형</span>&nbsp;&nbsp;
+        </p>
+        <img th:src="@{/images/image16.png}">
+        <br><br>
+        <hr>
+        <br><br>
+        <h2>사용기술 및 언어</h2>
+        <ul>
+          <li>Html</li>
+          <li>Css</li>
+          <li>JavaScript</li>
+          <li>Jsp</li>
+          <li>Java</li>
+          <li>Vue.js</li>
+        </ul>
+        <br><br>
+        <h2>기능</h2>
+        <ul>
+          <li>풀캘린더 (개인/팀/간트 일정조회)</li>
+          <img th:src="@{/images/image26.gif}"><br>
+          <li>풀캘린더 (일정 - 등록/수정/삭제)</li>
+          <img th:src="@{/images/image27.gif}">
+          <img th:src="@{/images/image28.gif}"><br>
+          <li>자유게시판(페이징처리)</li>
+          <img th:src="@{/images/image29.gif}"><br>
+          <li>자유게시판(이름,작성자로 게시물검색)</li>
+          <img th:src="@{/images/image30.gif}"><br>
+          <li>자유게시판(게시글상세, 첨부파일 다운)</li>
+          <img th:src="@{/images/image31.gif}"><br>
+          <li>자유게시판(게시글등록, 수정, 삭제)</li>
+          <img th:src="@{/images/image32.gif}">
+          <img th:src="@{/images/image33.gif}"><br>
+          <li>메일전송</li>
+          <img th:src="@{/images/image34.gif}"><br>
+          <li>메일전송(사원메일조회)</li>
+          <img th:src="@{/images/image35.gif}"><br>
+          <li>메일전송(언어변경)</li>
+          <img th:src="@{/images/image36.gif}"><br>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 네 번째 아이템 -->
+    <div class="container">
+      <div class="item">
+        <div>
+          <img th:src="@{/images/image15.png}">
+        </div>
+        <div class="projCont">
+          <p class="projTitle">휴먼철도999</p>
+          <p>열차조회 및 예약을 하고 추천여행지와 이벤트 상품을 확인해보세요!</p>
+          <span class="projSub">팀 프로젝트</span>&nbsp;&nbsp;
+          <span class="projSub">웹</span>
+        </div>
+      </div>
+      <div class="more-btns">
+        <button class="more" onclick="showPopup('popup4')">자세히 보기</button>
+        <a href="https://github.com/amjunha106/semiFinal" class="more" target="_blank">GitHub로 이동</a>
+      </div>
+    </div>
+
+    <!-- 팝업4 -->
+    <div id="popup4" class="popup">
+      <button class="popup-close" onclick="closePopup('popup4')">X</button>
+      <div class="popup-content">
+        <h2 style="text-align: center; margin-left: 0;">열차예약/조회 사이트</h2>
+        <p>2024.07 - 한달 &nbsp;&nbsp;&nbsp;3인
+          <br /><br />
+          <span class="projSub" style="border:3px solid black">팀 프로젝트</span>&nbsp;&nbsp;
+          <span class="projSub" style="border:3px solid black">웹</span>&nbsp;&nbsp;
+        </p>
+        <img th:src="@{/images/image37.png}">
+        <br><br>
+        <hr>
+        <br><br>
+        <h2>사용기술 및 언어</h2>
+        <ul>
+          <li>Html</li>
+          <li>Css</li>
+          <li>JavaScript</li>
+          <li>Jsp</li>
+          <li>Java</li>
+        </ul>
+        <br><br>
+        <h2>기능</h2>
+        <ul>
+          <li>메인페이지</li>
+          <img th:src="@{/images/image38.png}"><br>
+          <li>메인페이지 - 열차조회</li>
+          <img th:src="@{/images/image39.png}"><br>
+          <li>메인페이지 - 추천여행지</li>
+          <img th:src="@{/images/image40.png}"><br>
+          <li>메인페이지 - 노선도</li>
+          <img th:src="@{/images/image41.png}"><br>
+          <li>마이페이지</li>
+          <img th:src="@{/images/image42.png}"><br>
+          <li>마이페이지 - 예약한 열차조회</li>
+          <img th:src="@{/images/image43.png}"><br>
+        </ul>
+      </div>
+    </div>
+
+  <script>
+    function showPopup(popupId) {
+      document.getElementById(popupId).style.display = 'block';
+    }
+
+    function closePopup(popupId) {
+      document.getElementById(popupId).style.display = 'none';
+    }
+  </script>
+</body>
+
+</html>
