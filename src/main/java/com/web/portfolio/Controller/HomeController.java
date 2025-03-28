@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 
-    // http://localhost:8080/Home
-    @GetMapping("/Home")
-    public String home(){
-        return "Home";
+    // http://localhost:8080/index
+    @GetMapping("/index")
+    public String index(){
+        return "index";
     }
 
     // http://localhost:8080/AboutMe
